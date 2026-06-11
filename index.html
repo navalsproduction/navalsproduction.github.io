@@ -1,177 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naval's Production</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naval's Production | Capture All Boundaries</title>
+    <!-- Premium Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons (WhatsApp, Instagram, Map, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Base Styles & Dark Theme */
+        :root {
+            --primary-color: #D4AF37; /* Cinematic Gold */
+            --bg-dark: #0a0a0a;
+            --text-light: #f5f5f5;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif; /* Elegant font for headings */
+            font-weight: 700;
+        }
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+        nav .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: 2px;
+        }
 
-body{
-font-family:Arial, sans-serif;
-background:#111;
-color:#fff;
-line-height:1.6;
-}
+        /* Hero Section (Full Screen Cinematic Background) */
+        .hero {
+            height: 100vh;
+            /* Placeholder Wedding Cinematic Photo */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+        .btn {
+            padding: 15px 35px;
+            background-color: var(--primary-color);
+            color: #000;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: 0.3s;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn:hover {
+            background-color: #fff;
+            box-shadow: 0 0 15px var(--primary-color);
+        }
 
-header{
-padding:80px 20px;
-text-align:center;
-background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7));
-}
+        /* Section Layout */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
 
-header h1{
-font-size:48px;
-margin-bottom:15px;
-}
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .service-box {
+            background: #151515;
+            padding: 40px 30px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .service-box:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        .service-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
 
-header p{
-font-size:22px;
-color:#f0c14b;
-margin-bottom:25px;
-}
+        /* Wedding Photo Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.4s ease;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+            filter: brightness(1.2);
+        }
 
-.btn{
-display:inline-block;
-padding:12px 25px;
-background:#f0c14b;
-color:#000;
-text-decoration:none;
-border-radius:5px;
-font-weight:bold;
-}
+        /* Booking Form & Contact */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+            text-align: left;
+        }
+        .contact-info, .booking-form {
+            flex: 1;
+            min-width: 320px;
+            background: #151515;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .contact-info h3, .booking-form h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        .contact-info i {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
 
-section{
-padding:50px 20px;
-max-width:1000px;
-margin:auto;
-}
+        /* Form Styling */
+        .booking-form input, .booking-form select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+        .booking-form input:focus, .booking-form select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .booking-form button {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
 
-h2{
-text-align:center;
-margin-bottom:20px;
-color:#f0c14b;
-}
+        /* Map Embed */
+        .map-container {
+            margin-top: 30px;
+        }
+        iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            border-radius: 5px;
+        }
 
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        .social-icons a {
+            color: #fff;
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
 
-.card{
-background:#1e1e1e;
-padding:20px;
-border-radius:10px;
-text-align:center;
-}
-
-footer{
-text-align:center;
-padding:30px;
-background:#000;
-}
-
-.contact{
-text-align:center;
-}
-
-.contact a{
-color:#f0c14b;
-text-decoration:none;
-}
-
-@media(max-width:768px){
-header h1{
-font-size:34px;
-}
-header p{
-font-size:18px;
-}
-}
-</style>
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1.8rem;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .whatsapp-float span {
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Mobile Responsiveness */
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            nav { padding: 15px 20px; }
+            .whatsapp-float span { display: none; }
+            .whatsapp-float { padding: 15px 18px; border-radius: 50%; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<h1>Naval's Production</h1>
-<p>Capture All Boundaries</p>
+    <!-- Top Navbar -->
+    <nav>
+        <div class="logo">Naval's Production</div>
+        <div>
+            <a href="#contact" class="btn" style="padding: 8px 20px; background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color);">Contact</a>
+        </div>
+    </nav>
 
-<a href="https://instagram.com/navals_production" class="btn">
-View Portfolio
-</a>
-</header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Naval's Production</h1>
+        <p>Capture All Boundaries</p>
+        <a href="#contact" class="btn">Book Now</a>
+    </section>
 
-<section>
-<h2>About Us</h2>
-<p style="text-align:center;">
-Professional Wedding Photography, Cinematic Films,
-Pre-Wedding Shoots, Event Coverage and Creative Video Production.
-Capturing your precious memories with creativity and passion.
-</p>
-</section>
+    <!-- Services Section -->
+    <section class="section">
+        <h2>Our Services</h2>
+        <p style="font-size: 1.1rem; max-width: 800px; margin: auto; color: #bbb;">Capturing your precious memories with creativity and passion. We provide premium coverage with artistic storytelling.</p>
+        
+        <div class="services-grid">
+            <div class="service-box">
+                <i class="fa-solid fa-camera-retro"></i>
+                <h3>Wedding Photography</h3>
+                <p>Premium wedding coverage with artistic storytelling.</p>
+            </div>
+            <div class="service-box">
+                <i class="fa-solid fa-film"></i>
+                <h3>Cinematic Films</h3>
+                <p>Movie-style wedding films that preserve emotions forever.</p>
+            </div>
+            <div class="service-box">
+                <i class="fa-solid fa-heart"></i>
+                <h3>Pre-Wedding Shoots</h3>
+                <p>Creative outdoor and destination pre-wedding shoots.</p>
+            </div>
+            <div class="service-box">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3>Event Coverage</h3>
+                <p>Birthday, Anniversary and Corporate Event Photography.</p>
+            </div>
+            <div class="service-box">
+                <i class="fa-solid fa-video"></i>
+                <h3>Video Editing</h3>
+                <p>Professional editing for reels, weddings and commercials.</p>
+            </div>
+            <div class="service-box">
+                <i class="fa-solid fa-book-open"></i>
+                <h3>Album Designing</h3>
+                <p>Premium album design services for photographers and clients.</p>
+            </div>
+        </div>
+    </section>
 
-<section>
-<h2>Our Services</h2>
+    <!-- Gallery Section -->
+    <section class="section" id="portfolio">
+        <h2>Wedding Portfolio</h2>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop" alt="Cinematic Wedding">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=600&auto=format&fit=crop" alt="Pre Wedding">
+            <img src="https://images.unsplash.com/photo-1542042161784-26ab9e041e89?q=80&w=600&auto=format&fit=crop" alt="Couple Portrait">
+            <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=600&auto=format&fit=crop" alt="Event Coverage">
+        </div>
+    </section>
 
-<div class="services">
+    <!-- Contact & Booking Section -->
+    <section class="section" id="contact">
+        <h2>Book Your Shoot</h2>
+        <div class="contact-container">
+            
+            <!-- Contact Details -->
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p><i class="fa-solid fa-phone"></i> +91 7505521974</p>
+                <p><i class="fa-solid fa-envelope"></i> navalsproduction@gmail.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> Prayagraj, Uttar Pradesh, India</p>
+                <p><i class="fa-brands fa-instagram"></i> <a href="https://instagram.com/navals_production" target="_blank">@navals_production</a></p>
+                
+                <div class="map-container">
+                    <!-- Google Map - Prayagraj Location -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115312.31174996167!2d81.74596328362483!3d25.435801124584025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398534c9b20bd49f%3A0xa2237856ad4041a!2sPrayagraj%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
 
-<div class="card">
-<h3>Wedding Photography</h3>
-<p>Premium wedding coverage with artistic storytelling.</p>
-</div>
+            <!-- Booking Form -->
+            <div class="booking-form">
+                <h3>Online Booking Form</h3>
+                <!-- Form direct mailto link ke through open hoga -->
+                <form action="mailto:navalsproduction@gmail.com" method="post" enctype="text/plain">
+                    <input type="text" name="Name" placeholder="Your Full Name" required>
+                    <input type="tel" name="Phone" placeholder="Your Phone Number" required>
+                    <input type="date" name="Event_Date" required>
+                    <select name="Event_Type" required>
+                        <option value="" disabled selected>Select Event Type</option>
+                        <option value="Wedding">Wedding</option>
+                        <option value="Pre-Wedding">Pre-Wedding</option>
+                        <option value="Cinematic Film">Cinematic Film</option>
+                        <option value="Corporate Event">Corporate Event</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <button type="submit" class="btn">Submit Request</button>
+                </form>
+            </div>
 
-<div class="card">
-<h3>Cinematic Wedding Films</h3>
-<p>Movie-style wedding films that preserve emotions forever.</p>
-</div>
+        </div>
+    </section>
 
-<div class="card">
-<h3>Pre Wedding Shoots</h3>
-<p>Creative outdoor and destination pre-wedding shoots.</p>
-</div>
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="https://instagram.com/navals_production" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/917505521974" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <br>
+        <p style="color: var(--primary-color); font-size: 1.2rem; margin-bottom: 10px;"><strong>Bookings Open Now</strong></p>
+        <p style="color: #666;">&copy; 2026 Naval's Production. All Rights Reserved.</p>
+    </footer>
 
-<div class="card">
-<h3>Event Coverage</h3>
-<p>Birthday, Anniversary and Corporate Event Photography.</p>
-</div>
-
-<div class="card">
-<h3>Video Editing</h3>
-<p>Professional editing for reels, weddings and commercials.</p>
-</div>
-
-<div class="card">
-<h3>Album Designing</h3>
-<p>Premium album design services for photographers and clients.</p>
-</div>
-
-</div>
-</section>
-
-<section class="contact">
-<h2>Contact Us</h2>
-
-<p>Instagram:
-<a href="https://instagram.com/navals_production">
-@navals_production
-</a>
-</p>
-
-<p style="margin-top:15px;">
-Bookings Open Now
-</p>
-</section>
-
-<footer>
-<p>© 2026 Naval's Production. All Rights Reserved.</p>
-</footer>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/917505521974?text=Hello%20Naval's%20Production,%20I%20want%20to%20know%20more%20about%20your%20services%20and%20book%20a%20shoot." class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>Book Now</span>
+    </a>
 
 </body>
 </html>
