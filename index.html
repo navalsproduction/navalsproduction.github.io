@@ -28,7 +28,7 @@
             line-height: 1.6;
         }
         h1, h2, h3 {
-            font-family: 'Cinzel', serif; /* Elegant font for headings */
+            font-family: 'Cinzel', serif;
             font-weight: 700;
         }
         a {
@@ -57,7 +57,6 @@
         /* Hero Section (Full Screen Cinematic Background) */
         .hero {
             height: 100vh;
-            /* Placeholder Wedding Cinematic Photo */
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
             display: flex;
             flex-direction: column;
@@ -349,15 +348,21 @@
                 
                 <div class="map-container">
                     <!-- Google Map - Prayagraj Location -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115312.31174996167!2d81.74596328362483!3d25.435801124584025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398534c9b20bd49f%3A0xa2237856ad4041a!2sPrayagraj%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=Prayagraj,%20Uttar%20Pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
             <!-- Booking Form -->
             <div class="booking-form">
                 <h3>Online Booking Form</h3>
-                <!-- Form direct mailto link ke through open hoga -->
-                <form action="mailto:navalsproduction@gmail.com" method="post" enctype="text/plain">
+                <!-- Smart Form Integration via Formsubmit -->
+                <form action="https://formsubmit.co/navalsproduction@gmail.com" method="POST">
+                    
+                    <!-- Hidden settings for better email format -->
+                    <input type="hidden" name="_subject" value="New Booking Request - Naval's Production">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
                     <input type="text" name="Name" placeholder="Your Full Name" required>
                     <input type="tel" name="Phone" placeholder="Your Phone Number" required>
                     <input type="date" name="Event_Date" required>
